@@ -13,9 +13,17 @@ class CreateActividadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('actividades', function (Blueprint $table) {
+        Schema::create('actividads', function (Blueprint $table) {
             $table->id();
+            $table->string("tipo");
+            $table->string("titulo");
+            $table->unsignedBigInteger("id_proyecto");
+            $table->unsignedBigInteger("id_empleado");
+            $table->string("descripcion");
             $table->timestamps();
+
+            $table->foreign("id_empleado")->references("id")->on("empleados");
+            $table->foreign("id_proyecto")->references("id")->on("proyectos");
         });
     }
 
@@ -26,6 +34,6 @@ class CreateActividadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actividades');
+        Schema::dropIfExists('actividads');
     }
 }
