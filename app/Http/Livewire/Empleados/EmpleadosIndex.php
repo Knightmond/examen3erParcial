@@ -15,7 +15,7 @@ class EmpleadosIndex extends Component
 
     public function render()
     {
-        $empleados = ($this->cargado = true) ? Empleado::where("nombre", "LIKE", "%".$this->search."%")
+        $empleados = ($this->cargado == true) ? Empleado::where("nombre", "LIKE", "%".$this->search."%")
             ->orwhere("apellido", "LIKE", "%".$this->search."%")
             ->orwhere("email", "LIKE", "%".$this->search."%")
             ->paginate(7) : [];
